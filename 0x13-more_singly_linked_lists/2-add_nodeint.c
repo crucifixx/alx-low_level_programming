@@ -1,29 +1,21 @@
 #include "lists.h"
-
 /**
- * listint_len - a function that returns the number of elements.
- *
- * @h: pointer to the first node
- *
- * Return: number of elements
-*/
-size_t listint_len(const listint_t *h)
+ * add_nodeint - adds a node at the end
+ * @head: start of node
+ * @n: value to give new node
+ * Return: the linked list
+ */
+listint_t *add_nodeint(listint_t **head, const int n)
 {
-	size_t elements = 1;
+	listint_t *new;
 
-	/*return 0 as no of elements when h is NULL*/
-	if (h == NULL)
-		return (0);
+	new = malloc(sizeof(listint_t));
+	if (new == NULL)
+		return (NULL);
+	new->n = n;
+	new->next = *head;
 
-	while (h->next != NULL)
-	{
-		/*count no of elements*/
-		if (h->n != '\0')
-			elements++;
+	*head = new;
 
-		/*go to next node*/
-		h = h->next;
-	}
-
-	return (elements);
+	return (*head);
 }
